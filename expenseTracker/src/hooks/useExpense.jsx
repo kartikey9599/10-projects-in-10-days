@@ -9,6 +9,25 @@ const useExpense = () => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('expenses', JSON.stringify('expenses'));
+    localStorage.setItem('expenses', JSON.stringify(expenses));
   }, [expenses]);
+
+  const addExpense = (expense) => {
+    const newExpense = {
+      id: crypto.randomUUID(), // unique ID
+      ...expense,
+    };
+    setExpenses((prev) => [...prev, newExpense]);
+  };
+  const deleteExpense = (id) => {
+    setExpenses((prev) => prev.filter((e) => e.id !== id));
+  };
+  const editExpense = (id, updatedData) => {
+    setExpenses((prev) =>
+      prev.map((exp) => (exp.id === id ? { ...exp, ...updatedData } : exp))
+    );
+  };
+  return { expenses, addExpense, deleteExpense, editExpense };
 };
+
+export default useExpense;

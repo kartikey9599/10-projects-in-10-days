@@ -1,57 +1,69 @@
 import { useState } from 'react';
+import { useExpensesContext } from '../context/ExpenseContext';
 
 export default function ExpenseForm() {
+  const { addExpense } = useExpensesContext();
   const [title, setTitle] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
-  let addExpense = (e) => {
+
+  let handleSubmit = (e) => {
     e.preventDefault();
-    const newExpense = { title, amount, date };
-    console.log(newExpense);
+    addExpense({ title, amount, date });
     setTitle('');
     setAmount('');
     setDate('');
   };
 
   return (
-    <div className="max-w-md mx-auto mt-12 p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-100">
-      <h1 className="text-2xl font-semibold text-gray-800 mb-1">
-        Expense Tracker
+    <div className="p-6 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-indigo-100">
+      <h1 className="text-2xl font-semibold text-indigo-700 mb-1">
+        Add Expense
       </h1>
-      <p className="text-sm text-gray-500 mb-6">Add your expenses here</p>
-      <form onSubmit={addExpense} className="space-y-4">
+      <p className="text-sm text-indigo-400 mb-6">Fill the details below</p>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">
+          <label className="block text-xs font-medium text-indigo-600 mb-1">
             Title
           </label>
           <input
-            className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            className="w-full px-4 py-2 rounded-lg border border-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
             type="text"
+            value={title}
+            placeholder="What did you spend on?"
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
+
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">
+          <label className="block text-xs font-medium text-indigo-600 mb-1">
             Amount
           </label>
           <input
-            className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            className="w-full px-4 py-2 rounded-lg border border-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
             type="number"
+            value={amount}
+            placeholder="How much did you spend?"
             onChange={(e) => setAmount(e.target.value)}
           />
         </div>
+
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">
+          <label className="block text-xs font-medium text-indigo-600 mb-1">
             Date
           </label>
           <input
-            className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            className="w-full px-4 py-2 rounded-lg border border-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
             type="date"
+            value={date}
+            placeholder="Expense date"
             onChange={(e) => setDate(e.target.value)}
           />
         </div>
+
         <div className="flex justify-end">
-          <button className="inline-flex items-center gap-2 px-5 py-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 active:scale-95 transition-transform">
+          <button className="inline-flex items-center gap-2 px-6 py-2 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 active:scale-95 transition">
             Submit
           </button>
         </div>
