@@ -16,7 +16,7 @@ export default function ExpenseForm() {
   };
 
   return (
-    <div className="p-6 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-indigo-100">
+    <div className="w-full max-w-md p-6 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-indigo-100">
       <h1 className="text-2xl font-semibold text-indigo-700 mb-1">
         Add Expense
       </h1>

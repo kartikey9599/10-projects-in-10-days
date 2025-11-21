@@ -14,7 +14,7 @@ const useExpense = () => {
 
   const addExpense = (expense) => {
     const newExpense = {
-      id: crypto.randomUUID(), // unique ID
+      id: crypto.randomUUID(),
       ...expense,
     };
     setExpenses((prev) => [...prev, newExpense]);

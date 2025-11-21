@@ -17,7 +17,7 @@ const ExpenseList = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white/80 rounded-2xl shadow-lg border border-gray-100">
+    <div className="w-full max-w-md p-6 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-gray-100">
       <h2 className="text-xl font-semibold text-gray-800 mb-4">
         Your Expenses
       </h2>
@@ -31,7 +31,6 @@ const ExpenseList = () => {
               key={expense.id}
               className="p-4 bg-white rounded-xl shadow-sm border flex justify-between items-center"
             >
-              {/* If editing */}
               {editingId === expense.id ? (
                 <div className="w-full space-y-2">
                   <input
@@ -72,7 +71,6 @@ const ExpenseList = () => {
                 </div>
               ) : (
                 <>
-                  {/* Normal View */}
                   <div>
                     <p className="text-gray-800 font-medium">{expense.title}</p>
                     <p className="text-gray-500 text-sm">{expense.date}</p>
@@ -83,7 +81,6 @@ const ExpenseList = () => {
                       ₹{expense.amount}
                     </span>
 
-                    {/* Edit Button */}
                     <button
                       onClick={() => startEdit(expense)}
                       className="px-3 py-1 text-sm bg-yellow-500 text-white rounded-lg"
@@ -91,7 +88,6 @@ const ExpenseList = () => {
                       Edit
                     </button>
 
-                    {/* Delete Button */}
                     <button
                       onClick={() => deleteExpense(expense.id)}
                       className="px-3 py-1 text-sm bg-red-600 text-white rounded-lg"
